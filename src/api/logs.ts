@@ -18,13 +18,13 @@ export async function getDeploymentLogs(
   if (params.limit) query.set("limit", String(params.limit));
 
   return client.get<PaginatedResult<IDeploymentLog>>(
-    `/api/deployment-logs?${query.toString()}`
+    `/api/v1/deployment-logs?${query.toString()}`
   );
 }
 
 export async function getLogCount(deploymentId: string): Promise<number> {
   const res = await client.get<{ deploymentId: string; count: number }>(
-    `/api/deployment-logs/count?deploymentId=${deploymentId}`
+    `/api/v1/deployment-logs/count?deploymentId=${deploymentId}`
   );
   return res.count;
 }

@@ -48,13 +48,13 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-medium",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
         config.bgClass,
         config.textClass,
         className
       )}
     >
-      <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", config.dotClass)} />
+      <span className={cn("h-2 w-2 rounded-full shrink-0", config.dotClass)} />
       {config.label}
     </span>
   );

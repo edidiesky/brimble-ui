@@ -49,11 +49,11 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
         <Link
           to="/deployments/$id"
           params={{ id: deployment.id }}
-          className="font-mono text-[13px] font-semibold text-foreground hover:underline underline-offset-2"
+          className="font-mono text-base font-semibold text-foreground hover:underline underline-offset-2"
         >
           {shortId(deployment.id)}
         </Link>
-        <p className="text-[11px] text-muted-foreground mt-0.5">
+        <p className="text-xs text-muted-foreground mt-0.5">
           {deployment.name ?? "Production"}
         </p>
       </div>
@@ -62,7 +62,7 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
       <div className="w-25 shrink-0">
         <StatusBadge status={deployment.status} />
         {deployment.attempts > 1 && (
-          <p className="text-[10px] text-muted-foreground mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             attempt {deployment.attempts}
           </p>
         )}
@@ -70,11 +70,11 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
 
       {/* Branch + commit */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-1.5 text-[12px] text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
           <GitBranch className="h-3 w-3 shrink-0" />
           <span className="font-medium text-foreground">main</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[12px] text-muted-foreground mt-0.5 min-w-0">
+        <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-0.5 min-w-0">
           <GitCommit className="h-3 w-3 shrink-0" />
           <span className="truncate">{shortRef(deployment.sourceRef)}</span>
         </div>
@@ -82,7 +82,7 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
 
       {/* URL */}
       {deployment.url ? (
-        <div className="hidden lg:flex items-center gap-1.5 text-[12px] text-muted-foreground w-50 shrink-0 min-w-0">
+        <div className="hidden lg:flex items-center gap-1.5 text-sm text-muted-foreground w-70 shrink-0 min-w-0">
           <Globe className="h-3 w-3 shrink-0" />
           <a
             href={deployment.url}
@@ -98,9 +98,9 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
       )}
 
       {/* Time + author */}
-      <div className="text-right shrink-0 w-30">
-        <p className="text-[12px] text-muted-foreground">{timeAgo} ago</p>
-        <p className="text-[11px] text-muted-foreground mt-0.5">
+      <div className="text-right shrink-0 w-70">
+        <p className="text-sm text-muted-foreground">{timeAgo} ago</p>
+        <p className="text-xs text-muted-foreground mt-0.5">
           by brimble-user
         </p>
       </div>

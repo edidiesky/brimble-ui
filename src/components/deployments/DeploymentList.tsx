@@ -17,10 +17,25 @@ const STATUS_FILTERS: { label: string; value: DeploymentStatus | "all" }[] = [
   { label: "Queued", value: "pending" },
 ];
 
+const PAGE_SIZE = 5;
+
 export function DeploymentList() {
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<DeploymentStatus | "all">("all");
+  const [statusFilter, setStatusFilter] = useState<DeploymentStatus | "all">(
+    "all",
+  );
   const [deployFormOpen, setDeployFormOpen] = useState(false);
+  const [page, setPage] = useState(1);
+
+  function handleSearch(value: string) {
+    setSearch(value);
+    setPage(1);
+  }
+
+  function handleStatusFilter(value: DeploymentStatus | "all") {
+    setStatusFilter(value);
+    setPage(1);
+  }
 
   const { data, isLoading, isError, refetch, isFetching } = useQuery({
     queryKey: ["deployments"],
@@ -29,8 +44,7 @@ export function DeploymentList() {
   });
 
   const filtered = (data ?? []).filter((d) => {
-    const matchesStatus =
-      statusFilter === "all" || d.status === statusFilter;
+    const matchesStatus = statusFilter === "all" || d.status === statusFilter;
     const matchesSearch =
       search.trim() === "" ||
       d.id.toLowerCase().includes(search.toLowerCase()) ||
@@ -38,6 +52,9 @@ export function DeploymentList() {
       d.sourceRef.toLowerCase().includes(search.toLowerCase());
     return matchesStatus && matchesSearch;
   });
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
     <>
@@ -47,7 +64,7 @@ export function DeploymentList() {
           <h1 className="text-[15px] font-semibold text-foreground">
             Deployments
           </h1>
-          <p className="text-[12px] text-muted-foreground mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             {data ? `${data.length} total` : "Loading..."}
           </p>
         </div>
@@ -79,8 +96,8 @@ export function DeploymentList() {
           <Input
             placeholder="Search deployments..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-8 h-8 text-[12px]"
+            onChange={(e) => handleSearch(e.target.value)}
+            className="pl-8 h-8 text-sm"
           />
         </div>
 
@@ -88,8 +105,8 @@ export function DeploymentList() {
           {STATUS_FILTERS.map((f) => (
             <button
               key={f.value}
-              onClick={() => setStatusFilter(f.value)}
-              className={`rounded-md px-2.5 py-1 text-[12px] font-medium transition-colors ${
+              onClick={() => handleStatusFilter(f.value)}
+              className={`rounded-md px-2.5 py-1 text-sm font-medium transition-colors ${
                 statusFilter === f.value
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -124,7 +141,7 @@ export function DeploymentList() {
             <p className="text-[14px] font-medium text-foreground">
               Failed to load deployments
             </p>
-            <p className="text-[12px] text-muted-foreground mt-1 mb-4">
+            <p className="text-sm text-muted-foreground mt-1 mb-4">
               Make sure the API is running on port 3000
             </p>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
@@ -143,7 +160,7 @@ export function DeploymentList() {
                 ? "No deployments match your filters"
                 : "No deployments yet"}
             </p>
-            <p className="text-[12px] text-muted-foreground mt-1 mb-4">
+            <p className="text-sm text-muted-foreground mt-1 mb-4">
               {search || statusFilter !== "all"
                 ? "Try adjusting your search or filter"
                 : "Deploy your first project to get started"}
@@ -158,9 +175,68 @@ export function DeploymentList() {
 
         {!isLoading && !isError && filtered.length > 0 && (
           <div>
-            {filtered.map((deployment) => (
+            {paginated.map((deployment) => (
               <DeploymentRow key={deployment.id} deployment={deployment} />
             ))}
+
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between border-t border-border px-6 py-3">
+                <p className="text-sm text-muted-foreground">
+                  Showing {(page - 1) * PAGE_SIZE + 1}–
+                  {Math.min(page * PAGE_SIZE, filtered.length)} of{" "}
+                  {filtered.length}
+                </p>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={page === 1}
+                    className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-sm hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    ‹
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .filter(
+                      (p) =>
+                        p === 1 || p === totalPages || Math.abs(p - page) <= 1,
+                    )
+                    .reduce<(number | "...")[]>((acc, p, idx, arr) => {
+                      if (idx > 0 && p - (arr[idx - 1] as number) > 1)
+                        acc.push("...");
+                      acc.push(p);
+                      return acc;
+                    }, [])
+                    .map((p, i) =>
+                      p === "..." ? (
+                        <span
+                          key={`ellipsis-${i}`}
+                          className="px-1 text-sm text-muted-foreground"
+                        >
+                          ...
+                        </span>
+                      ) : (
+                        <button
+                          key={p}
+                          onClick={() => setPage(p as number)}
+                          className={`flex h-7 w-7 items-center justify-center rounded-md text-sm transition-colors ${
+                            page === p
+                              ? "bg-foreground text-background"
+                              : "border border-border hover:bg-muted"
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      ),
+                    )}
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={page === totalPages}
+                    className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-sm hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    ›
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

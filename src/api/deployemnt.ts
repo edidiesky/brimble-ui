@@ -6,15 +6,15 @@ import type {
 } from "../types";
 
 export async function listDeployments(): Promise<IDeployment[]> {
-  return client.get<IDeployment[]>("/api/deployments");
+  return client.get<IDeployment[]>("/api/v1/deployments");
 }
 
 export async function getDeployment(id: string): Promise<IDeployment> {
-  return client.get<IDeployment>(`/api/deployments/${id}`);
+  return client.get<IDeployment>(`/api/v1/deployments/${id}`);
 }
 
 export async function createDeployment(
   payload: CreateDeploymentPayload
 ): Promise<CreateDeploymentResponse> {
-  return client.post<CreateDeploymentResponse>("/api/deployments", payload);
+  return client.post<CreateDeploymentResponse>("/api/v1/deployments", payload);
 }
