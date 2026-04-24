@@ -41,7 +41,7 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 flex w-[220px] flex-col border-r border-border bg-sidebar">
+    <aside className="fixed inset-y-0 left-0 z-40 flex w-70 flex-col border-r border-border bg-sidebar">
       {/* Logo */}
       <div className="flex h-14 items-center gap-2.5 border-b border-border px-5">
         <div className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground">
@@ -51,28 +51,6 @@ export function Sidebar() {
           Brimble Test UI
         </span>
       </div>
-
-      {/* Project selector */}
-      <div className="border-b border-border px-4 py-3">
-        <button className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
-          <div className="flex items-center gap-2">
-            <div className="h-5 w-5 rounded-sm bg-foreground/10 flex items-center justify-center text-[10px] font-bold text-foreground">
-              B
-            </div>
-            <span className="font-medium text-foreground text-[14px]">brimble-paas</span>
-          </div>
-          <svg
-            className="h-3.5 w-3.5 text-muted-foreground"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-          </svg>
-        </button>
-      </div>
-
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto px-3 py-3">
         <ul className="space-y-0.5">
@@ -105,12 +83,12 @@ export function Sidebar() {
       {/* Footer */}
       <div className="border-t border-border p-4">
         <div className="flex items-center gap-2.5">
-          <div className="h-7 w-7 rounded-full bg-foreground flex items-center justify-center text-[11px] font-semibold text-background shrink-0">
+          <div className="h-7 w-7 rounded-full bg-foreground flex items-center justify-center text-xs font-semibold text-background shrink-0">
             B
           </div>
           <div className="min-w-0">
-            <p className="truncate text-[12px] font-medium text-foreground">brimble-user</p>
-            <p className="truncate text-[11px] text-muted-foreground">Pro Plan</p>
+            <p className="truncate text-sm font-medium text-foreground">brimble-user</p>
+            <p className="truncate text-xs text-muted-foreground">Pro Plan</p>
           </div>
         </div>
       </div>

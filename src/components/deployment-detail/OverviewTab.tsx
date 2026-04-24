@@ -9,10 +9,8 @@ interface OverviewTabProps {
 export function OverviewTab({ deployment }: OverviewTabProps) {
   return (
     <div className="p-6 grid grid-cols-1 lg:grid-cols-[280px_1fr] items-start gap-6">
-        <DeploymentMetaSidebar deployment={deployment} />
+      <DeploymentMetaSidebar deployment={deployment} />
       <DeploymentPreview deployment={deployment} />
-      
-    
     </div>
   );
 }

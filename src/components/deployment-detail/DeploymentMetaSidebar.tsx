@@ -12,11 +12,11 @@ interface MetaRowProps {
 function MetaRow({ label, icon, children }: MetaRowProps) {
   return (
     <div className="space-y-1">
-      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground uppercase tracking-wider">
+      <div className="flex items-center gap-1.5 text-xs text-gray-500 font-semibold uppercase tracking-wider">
         {icon}
         {label}
       </div>
-      <div className="text-[12px] text-foreground">{children}</div>
+      <div className="text-sm text-foreground">{children}</div>
     </div>
   );
 }
@@ -32,7 +32,7 @@ export function DeploymentMetaSidebar({ deployment }: DeploymentMetaSidebarProps
         <div className="flex items-center gap-2">
           <StatusBadge status={deployment.status} />
           {deployment.attempts > 1 && (
-            <span className="text-[11px] text-muted-foreground">
+            <span className="text-xs text-gray-500 font-semibold">
               {deployment.attempts} attempts
             </span>
           )}
@@ -48,7 +48,7 @@ export function DeploymentMetaSidebar({ deployment }: DeploymentMetaSidebarProps
             className="flex items-center gap-1 hover:underline underline-offset-2 text-foreground"
           >
             {deployment.url.replace("http://", "")}
-            <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground" />
+            <ExternalLink className="h-3 w-3 shrink-0 text-gray-500 font-semibold" />
           </a>
         </MetaRow>
       )}
@@ -60,7 +60,7 @@ export function DeploymentMetaSidebar({ deployment }: DeploymentMetaSidebarProps
             href={deployment.sourceRef}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-muted-foreground hover:text-foreground truncate"
+            className="flex items-center gap-1 text-gray-500 font-semibold hover:text-foreground truncate"
           >
             <GitCommit className="h-3 w-3 shrink-0" />
             <span className="truncate">{deployment.sourceRef}</span>
@@ -70,7 +70,7 @@ export function DeploymentMetaSidebar({ deployment }: DeploymentMetaSidebarProps
 
       <MetaRow label="Created" icon={<Clock className="h-3 w-3" />}>
         <p>{format(new Date(deployment.createdAt), "MMM d, yyyy HH:mm")}</p>
-        <p className="text-muted-foreground text-[11px]">
+        <p className="text-gray-500 font-semibold text-xs">
           {formatDistanceToNow(new Date(deployment.createdAt), { addSuffix: true })}
         </p>
       </MetaRow>
@@ -83,7 +83,7 @@ export function DeploymentMetaSidebar({ deployment }: DeploymentMetaSidebarProps
 
       {deployment.imageTag && (
         <MetaRow label="Image">
-          <span className="font-mono text-[11px] break-all text-muted-foreground">
+          <span className="font-mono text-xs break-all text-gray-500 font-semibold">
             {deployment.imageTag}
           </span>
         </MetaRow>

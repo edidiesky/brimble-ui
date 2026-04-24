@@ -14,7 +14,7 @@ export function DetailTabBar({ active, onChange }: DetailTabBarProps) {
           key={tab.id}
           onClick={() => onChange(tab.id)}
           className={cn(
-            "relative px-4 py-3 text-sm font-medium transition-colors",
+            "relative px-4 py-3 cursor-pointer text-sm font-medium transition-colors",
             active === tab.id
               ? "text-foreground"
               : "text-muted-foreground hover:text-foreground"
