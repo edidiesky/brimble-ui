@@ -9,13 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LogsRouteImport } from './routes/logs'
 import { Route as DeploymentsRouteImport } from './routes/deployments'
+import { Route as DeadLettersRouteImport } from './routes/dead-letters'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DeploymentsIdRouteImport } from './routes/deployments.$id'
 
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeploymentsRoute = DeploymentsRouteImport.update({
   id: '/deployments',
   path: '/deployments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeadLettersRoute = DeadLettersRouteImport.update({
+  id: '/dead-letters',
+  path: '/dead-letters',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,40 +43,73 @@ const DeploymentsIdRoute = DeploymentsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dead-letters': typeof DeadLettersRoute
   '/deployments': typeof DeploymentsRouteWithChildren
+  '/logs': typeof LogsRoute
   '/deployments/$id': typeof DeploymentsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dead-letters': typeof DeadLettersRoute
   '/deployments': typeof DeploymentsRouteWithChildren
+  '/logs': typeof LogsRoute
   '/deployments/$id': typeof DeploymentsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dead-letters': typeof DeadLettersRoute
   '/deployments': typeof DeploymentsRouteWithChildren
+  '/logs': typeof LogsRoute
   '/deployments/$id': typeof DeploymentsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/deployments' | '/deployments/$id'
+  fullPaths:
+    | '/'
+    | '/dead-letters'
+    | '/deployments'
+    | '/logs'
+    | '/deployments/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/deployments' | '/deployments/$id'
-  id: '__root__' | '/' | '/deployments' | '/deployments/$id'
+  to: '/' | '/dead-letters' | '/deployments' | '/logs' | '/deployments/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/dead-letters'
+    | '/deployments'
+    | '/logs'
+    | '/deployments/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DeadLettersRoute: typeof DeadLettersRoute
   DeploymentsRoute: typeof DeploymentsRouteWithChildren
+  LogsRoute: typeof LogsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/deployments': {
       id: '/deployments'
       path: '/deployments'
       fullPath: '/deployments'
       preLoaderRoute: typeof DeploymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dead-letters': {
+      id: '/dead-letters'
+      path: '/dead-letters'
+      fullPath: '/dead-letters'
+      preLoaderRoute: typeof DeadLettersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -98,7 +143,9 @@ const DeploymentsRouteWithChildren = DeploymentsRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DeadLettersRoute: DeadLettersRoute,
   DeploymentsRoute: DeploymentsRouteWithChildren,
+  LogsRoute: LogsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

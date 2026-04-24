@@ -13,6 +13,7 @@ import type { DetailTab } from "@/components/deployment-detail/types";
 export const Route = createFileRoute("/deployments/$id")({
   component: DeploymentDetailPage,
 });
+
 // eslint-disable-next-line react-refresh/only-export-components
 function DeploymentDetailPage() {
   const { id } = Route.useParams();

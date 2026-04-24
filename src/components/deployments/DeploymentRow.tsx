@@ -51,7 +51,7 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
         <Link
           to="/deployments/$id"
           params={{ id: deployment.id }}
-          className="font-mono text-base font-semibold text-foreground hover:underline underline-offset-2"
+          className="text-sm font-semibold text-foreground hover:underline underline-offset-2"
         >
           {shortId(deployment.id)}
         </Link>

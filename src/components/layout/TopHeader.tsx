@@ -10,7 +10,7 @@ interface TopHeaderProps {
   actions?: React.ReactNode;
 }
 
-export function TopHeader({ title, subtitle }: TopHeaderProps) {
+export function TopHeader({ title, subtitle, actions }: TopHeaderProps) {
   const [deployFormOpen, setDeployFormOpen] = useState(false);
   // const [page, setPage] = useState(1);
 
@@ -32,6 +32,7 @@ export function TopHeader({ title, subtitle }: TopHeaderProps) {
           )}
         </div>
         <div className="flex items-center gap-2">
+          {actions}
           <button
             onClick={() => refetch()}
             disabled={isFetching}
@@ -46,7 +47,6 @@ export function TopHeader({ title, subtitle }: TopHeaderProps) {
             size="sm"
             className="gap-1.5 text-[13px] h-8"
           >
-            {/* <Rocket className="h-3.5 w-3.5" /> */}
             Deploy
           </Button>
         </div>
