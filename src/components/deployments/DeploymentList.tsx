@@ -5,7 +5,7 @@ import { DeploymentRow } from "./DeploymentRow";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { listDeployments } from "@/api/deployemnt";
+import { listDeployments } from "@/api/deployments";
 import type { DeploymentStatus } from "@/types";
 
 const STATUS_FILTERS: { label: string; value: DeploymentStatus | "all" }[] = [

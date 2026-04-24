@@ -3,8 +3,8 @@ import { GitBranch, Rocket, Loader2, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { showToast } from "@/components/ui/CustomToast";
-import { ResponsiveModal } from "@/components/ui/ResponsiveModa";
-import { createDeployment } from "@/api/deployemnt";
+import { ResponsiveModal } from "@/components/ui/ResponsiveModal";
+import { createDeployment } from "@/api/deployments";
 import type { DeploymentSource } from "@/types";
 
 interface DeployFormProps {

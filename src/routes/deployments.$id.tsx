@@ -7,7 +7,7 @@ import { DetailTabBar } from "@/components/deployment-detail/DetailTabBar";
 import { OverviewTab } from "@/components/deployment-detail/OverviewTab";
 import { BuildLogsTab } from "@/components/deployment-detail/BuildLogsTab";
 import { DetailsTab } from "@/components/deployment-detail/DetailsTab";
-import { getDeployment } from "@/api/deployemnt";
+import { getDeployment } from "@/api/deployments";
 import type { DetailTab } from "@/components/deployment-detail/types";
 
 export const Route = createFileRoute("/deployments/$id")({

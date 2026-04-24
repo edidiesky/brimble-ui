@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdwon-menu";
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import type { IDeployment } from "@/types";
 

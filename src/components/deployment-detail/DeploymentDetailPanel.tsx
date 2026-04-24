@@ -12,8 +12,8 @@ import { formatDistanceToNow, format } from "date-fns";
 import { StatusBadge } from "@/components/deployments/StatusBadge";
 import { LogStream } from "@/components/logs/LogStream";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ResponsiveModal } from "@/components/ui/ResponsiveModa";
-import { getDeployment } from "@/api/deployemnt";
+import { ResponsiveModal } from "@/components/ui/ResponsiveModal";
+import { getDeployment } from "@/api/deployments";
 
 interface DeploymentDetailPanelProps {
   deploymentId: string | null;

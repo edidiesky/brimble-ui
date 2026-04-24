@@ -2,7 +2,7 @@ import { RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { listDeployments } from "@/api/deployemnt";
+import { listDeployments } from "@/api/deployments";
 import { DeployForm } from "../deployments/DeployForm";
 interface TopHeaderProps {
   title: string;

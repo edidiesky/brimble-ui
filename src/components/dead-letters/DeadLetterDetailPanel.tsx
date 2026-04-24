@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X, AlertCircle, CheckCircle2, Clock, Loader2 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { ResponsiveModal } from "@/components/ui/ResponsiveModa";
+import { ResponsiveModal } from "@/components/ui/ResponsiveModal";
 import { getDeadLetter, resolveDeadLetter } from "@/api/dead-letters";
 import { showToast } from "@/components/ui/CustomToast";
 import { Button } from "@/components/ui/button";
