@@ -38,7 +38,9 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
     deployment.status === "building" || deployment.status === "deploying";
 
   return (
-    <div
+    <Link
+    to="/deployments/$id"
+      params={{ id: deployment.id }}
       className={cn(
         "group flex items-center gap-4 border-b border-border px-6 py-4 transition-colors hover:bg-muted/40",
         isActive && "bg-yellow-50/40"
@@ -150,6 +152,6 @@ export function DeploymentRow({ deployment }: DeploymentRowProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-    </div>
+    </Link>
   );
 }

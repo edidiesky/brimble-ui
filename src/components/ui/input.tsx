@@ -58,7 +58,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             ref={ref}
             className={cn(
-              "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background",
+              "flex h-10 w-full rounded-md border bg-background px-2 py-2 text-sm ring-offset-background",
               "placeholder:text-muted-foreground",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               "disabled:cursor-not-allowed disabled:opacity-50",
@@ -66,9 +66,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               error
                 ? "border-destructive focus-visible:ring-destructive"
                 : "border-input",
-              icon && iconPosition === "left" && "pl-9",
-              icon && iconPosition === "right" && "pr-9",
-              isPassword && "pr-10",
+              icon && iconPosition === "left",
+              icon && iconPosition === "right",
+              isPassword,
               className
             )}
             {...props}
