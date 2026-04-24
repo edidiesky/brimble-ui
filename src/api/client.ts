@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
 export class ApiRequestError extends Error {
