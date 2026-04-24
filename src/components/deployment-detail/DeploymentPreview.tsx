@@ -23,7 +23,7 @@ export function DeploymentPreview({ deployment }: DeploymentPreviewProps) {
           </div>
           <div className="flex-1 mx-3 flex items-center gap-2 rounded-md bg-muted px-3 py-1">
             <Monitor className="h-3 w-3 text-muted-foreground shrink-0" />
-            <span className="text-[11px] text-muted-foreground truncate">
+            <span className="text-sm text-muted-foreground truncate">
               {deployment.url}
             </span>
           </div>
@@ -62,10 +62,10 @@ export function DeploymentPreview({ deployment }: DeploymentPreviewProps) {
   return (
     <div className="rounded-xl border border-border overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-zinc-950">
-        <span className="text-[11px] font-mono text-zinc-500">
-          build output
+        <span className="text-sm font-mono text-zinc-500">
+          Build output
         </span>
-        <span className="text-[11px] font-mono text-zinc-600">
+        <span className="text-sm font-mono text-zinc-600">
           {deployment.status}
         </span>
       </div>
