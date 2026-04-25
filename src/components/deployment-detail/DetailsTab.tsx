@@ -10,8 +10,8 @@ interface DetailRowProps {
 function DetailRow({ label, value, mono }: DetailRowProps) {
   return (
     <div className="flex items-start justify-between gap-8 py-3 border-b border-border last:border-0">
-      <span className="text-[12px] text-muted-foreground shrink-0 w-32">{label}</span>
-      <span className={`text-[12px] text-foreground text-right flex-1 ${mono ? "font-mono break-all" : ""}`}>
+      <span className="text-sm text-muted-foreground shrink-0 w-32">{label}</span>
+      <span className={`text-sm text-foreground text-right flex-1 ${mono ? "font-mono break-all" : ""}`}>
         {value}
       </span>
     </div>
@@ -69,11 +69,11 @@ export function DetailsTab({ deployment }: DetailsTabProps) {
         <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-4">
           <div className="flex items-center gap-2 mb-2">
             <AlertCircle className="h-4 w-4 text-red-500" />
-            <p className="text-[12px] font-semibold text-red-600 uppercase tracking-wider">
+            <p className="text-sm font-semibold text-red-600 uppercase tracking-wider">
               Last Error
             </p>
           </div>
-          <p className="font-mono text-[12px] text-red-700 leading-relaxed break-all">
+          <p className="font-mono text-sm text-red-700 leading-relaxed break-all">
             {deployment.lastError}
           </p>
         </div>

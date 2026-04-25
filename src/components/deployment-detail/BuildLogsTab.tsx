@@ -80,7 +80,7 @@ function PhaseGroup({ phase, logs, deployStatus }: PhaseGroupProps) {
         <span className="flex-1 text-[13px] font-medium text-foreground">
           {PHASE_LABELS[phase]}
         </span>
-        <span className="text-[11px] text-muted-foreground mr-2">
+        <span className="text-sm text-muted-foreground mr-2">
           {phaseLogs.length} lines
         </span>
         {open ? (
@@ -93,11 +93,11 @@ function PhaseGroup({ phase, logs, deployStatus }: PhaseGroupProps) {
       {open && (
         <div className="bg-zinc-950 overflow-x-auto">
           {phaseLogs.length === 0 ? (
-            <p className="px-4 py-3 text-[11px] text-zinc-600 font-mono">
+            <p className="px-4 py-3 text-sm text-zinc-600 font-mono">
               No logs for this phase.
             </p>
           ) : (
-            <table className="w-full text-[11px] font-mono">
+            <table className="w-full text-sm font-mono">
               <thead>
                 <tr className="border-b border-zinc-800">
                   <th className="text-right text-zinc-600 px-4 py-1.5 w-12 font-normal">
@@ -203,7 +203,7 @@ export function BuildLogsTab({
           Build Logs
         </h3>
         {!isLoading && (
-          <span className="text-[11px] text-muted-foreground">
+          <span className="text-sm text-muted-foreground">
             {totalLines} lines
           </span>
         )}

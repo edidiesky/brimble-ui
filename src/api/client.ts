@@ -32,8 +32,6 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     }
     throw new ApiRequestError(message, res.status);
   }
-
-  // 204 No Content
   if (res.status === 204) return undefined as T;
 
   return res.json() as Promise<T>;

@@ -57,7 +57,7 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
     <ResponsiveModal
       isOpen={open}
       onClose={() => !loading && onOpenChange(false)}
-      width={480}
+      width={580}
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-6 h-[72px] shrink-0">
@@ -66,10 +66,10 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
             <Rocket className="h-4 w-4 text-background" />
           </div>
           <div>
-            <h2 className="text-[14px] font-semibold text-foreground">
+            <h2 className="text-base font-semibold text-foreground">
               New Deployment
             </h2>
-            <p className="text-[11px] text-muted-foreground">brimble-paas</p>
+            <p className="text-sm text-muted-foreground">brimble-paas</p>
           </div>
         </div>
         <button
@@ -118,11 +118,11 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
           <div className="rounded-lg border border-border bg-muted/40 px-4 py-3">
             <p className="text-[12px] text-muted-foreground leading-relaxed">
               Brimble will clone your repository, detect the framework, run{" "}
-              <code className="bg-muted rounded px-1 text-foreground text-[11px]">
+              <code className="bg-muted rounded px-1 text-foreground text-sm">
                 npm install
               </code>{" "}
               and{" "}
-              <code className="bg-muted rounded px-1 text-foreground text-[11px]">
+              <code className="bg-muted rounded px-1 text-foreground text-sm">
                 npm run build
               </code>
               , then serve the output via Caddy.
@@ -130,7 +130,7 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
           </div>
 
           <div className="space-y-2">
-            <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
               Pipeline steps
             </p>
             {PIPELINE_STEPS.map((step, i) => (
