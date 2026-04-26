@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GitBranch, Rocket, Loader2, X } from "lucide-react";
+import { GitBranch, Loader2, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { showToast } from "@/components/ui/CustomToast";
@@ -62,8 +62,8 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-6 h-[72px] shrink-0">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground shrink-0">
-            <Rocket className="h-4 w-4 text-background" />
+          <div className="flex h-8 w-8 items-center text-white justify-center rounded-lg bg-foreground shrink-0">
+            B
           </div>
           <div>
             <h2 className="text-base font-semibold text-foreground">
@@ -172,7 +172,6 @@ export function DeployForm({ open, onOpenChange, onSuccess }: DeployFormProps) {
             </>
           ) : (
             <>
-              <Rocket className="h-3.5 w-3.5" />
               Deploy now
             </>
           )}
